@@ -38,7 +38,12 @@ public class UserFollowService {
 	
 	@Transactional
     public void follow(Long followingId, User follower){
+		System.out.println("========================================="+followingId);
+		
 		User following = userRepository.findById(followingId).orElseThrow(()->new IllegalArgumentException("해당 아이디의 유저가 없습니다. id : " + followingId));
+		
+		System.out.println("========================================="+following);
+		
 		UserFollow entity = UserFollow.builder().follower(follower).following(following).build();
 		userFollowRepository.save(entity);
     }

@@ -36,7 +36,7 @@ public class LabelController {
 		User user = (User) ((Authentication) principal).getPrincipal();
 		labelService.add(user, recipe);
 		recipeService.incWishCount(recipe);
-		monthlyLabelService.label(id);
+		//monthlyLabelService.label(id);
 		return new Result<Boolean>(true);
 	}
 
@@ -46,7 +46,7 @@ public class LabelController {
 		User user = (User) ((Authentication) principal).getPrincipal();		
 		labelService.delete(user, recipe);
 		recipeService.decWishCount(recipe);
-		monthlyLabelService.unlabel(id);
+		//monthlyLabelService.unlabel(id);
 		return new Result<Boolean>(true);
 	}
 

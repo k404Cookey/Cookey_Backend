@@ -31,6 +31,9 @@ public class RequestDto {
         private String description;
     }
 
-
+    //기본 생성자 추가
+    public RequestDto() {
+    }
+    
 }
 

@@ -46,7 +46,9 @@ public class UserFollowController {
 
 	@PostMapping("/follow/{followingId}")
 	public Result<Boolean> follow(@PathVariable Long followingId, Principal principal) {
+		System.out.println("follow==============================");
 		User follower = (User) ((Authentication) principal).getPrincipal();
+		System.out.println("follow=============================="+follower);
 		userFollowService.follow(followingId, follower);
 		return new Result<Boolean>(true);
 	}

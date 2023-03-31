@@ -41,7 +41,7 @@ public class RecipeController {
         Recipe recipe = recipeService.get(id);
         recipeService.incViewCount(recipe);
         ResponseDto responseDto = new ResponseDto(recipe);
-        monthlyViewService.visit(id);
+        //monthlyViewService.visit(id);
         return new Result<ResponseDto>(responseDto);
     }
 
