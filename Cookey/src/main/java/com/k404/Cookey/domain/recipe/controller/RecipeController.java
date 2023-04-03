@@ -52,7 +52,7 @@ public class RecipeController {
             @RequestParam(required = false, defaultValue = "10") int limit){
 
         List<Comment> comments = commentService.findByRecipeId(id,offset,limit);
-
+        
         return new ResultList<ResponseCommentDto>(comments.stream().map(comment -> new ResponseCommentDto(comment)).collect(Collectors.toList()));
 
     }

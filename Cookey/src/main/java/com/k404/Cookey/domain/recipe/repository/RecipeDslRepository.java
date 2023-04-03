@@ -34,6 +34,7 @@ public class RecipeDslRepository extends QuerydslRepositorySupport {
 				.limit(limit).offset(offset).fetch();
 	}
 
+	// order -> latest
 	public List<Recipe> findAll(String stepStart, String stepEnd, String time, LocalDateTime start, LocalDateTime end,
 			String order, String keyword, int limit, int offset) {
 		return queryFactory.selectFrom(recipe).leftJoin(ingredient).on(recipe.eq(ingredient.recipe))
@@ -41,6 +42,19 @@ public class RecipeDslRepository extends QuerydslRepositorySupport {
 				.where(btStep(stepStart, stepEnd), eqTime(time), goeStartRecipe(start), loeEndRecipe(end),
 						containKeyword(keyword))
 				.groupBy(recipe).orderBy(ordered(order)).limit(limit).offset(offset).fetch();
+	}
+	
+	//정렬 .orderBy(recipe.viewCount.desc()) 추가
+	public List<Recipe> findAllOrderByRecipes(String stepStart, String stepEnd, String time, LocalDateTime start, 
+			LocalDateTime end, String keyword, int limit, int offset) {
+		return queryFactory.selectFrom(recipe).leftJoin(ingredient).on(recipe.eq(ingredient.recipe))
+				.leftJoin(recipeTheme).on(recipe.eq(recipeTheme.recipe)).leftJoin(theme).on(theme.eq(recipeTheme.theme))
+				.where(btStep(stepStart, stepEnd), eqTime(time), goeStartRecipe(start), loeEndRecipe(end),
+						containKeyword(keyword))
+				.groupBy(recipe)
+				.orderBy(recipe.viewCount.desc())
+				.limit(limit).offset(offset)
+				.fetch();
 	}
 
 	public List<Double> getAverageStar(Long id){
