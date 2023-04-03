@@ -23,14 +23,15 @@ public class RequestDto {
     private int time;
     private Long writerId;
     private Long pid;
-
+    
     @Embeddable
     @Data
     static public class Step {
         private String imageUrl;
         private String description;
     }
-
-
-}
+    //기본 생성자 추가
+    public RequestDto() {
+    }
+ }
 

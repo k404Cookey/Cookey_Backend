@@ -42,19 +42,19 @@ public class RecipeListController {
 			end = LocalDateTime.parse(endDate + " 23:59:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		}
 		if (queryType.equals("search")) {
+			System.out.println("쿼리타입 serch가 실행 됬나요?");
 			return new ResultList<ResponseDto>(recipeListService.findAll(stepStart, stepEnd, time, start, end, order, keyword, limit, offset));
 		}
-		if (queryType.equals("viewTop")) {
-			return new ResultList<ResponseDto>(monthlyViewService.rank(limit));
-		}
-		if (queryType.equals("labelTop")) {
-			return new ResultList<ResponseDto>(monthlyLabelService.rank(limit));
-		}
+//		if (queryType.equals("viewTop")) {
+//			return new ResultList<ResponseDto>(monthlyViewService.rank(limit));
+//		}
+//		if (queryType.equals("labelTop")) {
+//			return new ResultList<ResponseDto>(monthlyLabelService.rank(limit));
+//		}
 		if (queryType.equals("my")) {
 			User user = (User) ((Authentication) principal).getPrincipal();
 			return new ResultList<ResponseDto>(recipeListService.getUserRecipes(user, limit, offset));
 		}
 		return null;
 	}
-
 }

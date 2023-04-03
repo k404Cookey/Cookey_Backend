@@ -1,4 +1,4 @@
-package com.k404.Cookey.Security;
+package com.k404.Cookey.security;
 
 import com.k404.Cookey.domain.user.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -62,7 +62,6 @@ public class Recipe extends BaseTimeEntity {
 
 	private String thumbnail;
 
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="pid")
 	private Recipe parent;

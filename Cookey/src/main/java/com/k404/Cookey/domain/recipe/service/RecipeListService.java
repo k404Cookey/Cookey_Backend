@@ -17,7 +17,8 @@ public class RecipeListService {
 	
 	private final RecipeDslRepository recipeDslRepository;
 	
-	public List<ResponseDto> findAll(String stepStart, String stepEnd, String time, LocalDateTime start, LocalDateTime end, String order, String keyword, int limit, int offset) {
+	public List<ResponseDto> findAll(String stepStart, String stepEnd, String time, LocalDateTime start, LocalDateTime end, String order, String keyword, int limit, int offset) {		
+		System.out.println("recipeDslRepository안 findAll 실행후 ");
 		return recipeDslRepository.findAll(stepStart, stepEnd, time, start, end, order, keyword, limit, offset).stream()
 				.map(ResponseDto::new).collect(Collectors.toList());
 	}

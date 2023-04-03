@@ -1,9 +1,10 @@
 package com.k404.Cookey.domain.user.service;
 
-import com.k404.Cookey.Security.JwtTokenProvider;
 import com.k404.Cookey.domain.user.entity.User;
 import com.k404.Cookey.domain.user.repository.UserRepository;
 import com.k404.Cookey.domain.user_follow.entity.UserFollow;
+import com.k404.Cookey.security.JwtTokenProvider;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,9 +46,7 @@ public class UserService {
     public String makeJwtByEmail(String email){
         User member = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 E-MAIL 입니다."));
-
         return jwtTokenProvider.createToken(member);
-
     }
     
 }

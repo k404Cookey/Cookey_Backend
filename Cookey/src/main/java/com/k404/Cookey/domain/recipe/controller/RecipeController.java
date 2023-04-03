@@ -41,7 +41,7 @@ public class RecipeController {
         Recipe recipe = recipeService.get(id);
         recipeService.incViewCount(recipe);
         ResponseDto responseDto = new ResponseDto(recipe);
-        monthlyViewService.visit(id);
+//        monthlyViewService.visit(id);
         return new Result<ResponseDto>(responseDto);
     }
 
@@ -78,8 +78,10 @@ public class RecipeController {
     }
 
     @PostMapping("")
-    public Result<ResponseDto> add (@RequestBody @Validated RequestDto reqDto){
+    public Result<ResponseDto> add (@RequestBody @Validated RequestDto reqDto){    	
+    	System.out.println("reqDto에는 뭐가 들어있을까? " +reqDto);
         Long id = recipeService.add(reqDto);
+        System.out.println("add 메서드 실행후반환된  id의 값" + id.toString());
         return new Result<ResponseDto>(new ResponseDto(recipeService.get(id)));
     }
 

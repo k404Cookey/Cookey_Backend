@@ -45,7 +45,7 @@ public class RecipeService {
     private final LabelRepository labelRepository;
     private final UserRepository userRepository;
 
-    @Transactional
+//    @Transactional
     public Long add(RequestDto requestDto){
 
         User user = userRepository.getOne(requestDto.getWriterId());
@@ -98,14 +98,17 @@ public class RecipeService {
                 .user(user)
                 .ingredients(ingredients)
                 .recipeThemes(recipeThemes)
-                .steps(steps)
+                .steps(steps)                
                 .build();
 
         if(requestDto.getPid() != null){
             Recipe parentRecipe = recipeRepository.findById(requestDto.getPid()).orElseThrow(()->new IllegalArgumentException("해당 아이디의 레시피가 없습니다. id : " + requestDto.getPid()));
             recipe.setParent(parentRecipe);
         }
+        
+        System.out.println("recipe user에는 뭐가 들어있을까?" + recipe.getUser().toString());
         recipeRepository.save(recipe);
+        System.out.println("recipe id에는 뭐가 들어있을까?" + recipe.getId().toString());
         return recipe.getId();
     }
 
@@ -193,8 +196,11 @@ public class RecipeService {
 
     @Transactional
     public Recipe get(Long id){
+    	System.out.println("컨트롤러 -> 서비스 get(id)");
         Recipe recipe = recipeRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 아이디의 레시피가 없습니다. id : " + id));
-
+        System.out.println("컨트롤러 -> 서비스 get(id) 후 recipe의 정보"+recipe.toString());
+        System.out.println("컨트롤러 -> 서비스 get(id) 후 recipe.id의 정보"+recipe.getId());
+        System.out.println("컨트롤러 -> 서비스 get(id) 후 recipe.user의 정보"+recipe.getUser());
         return recipe;
     }
 

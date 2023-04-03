@@ -1,4 +1,4 @@
-package com.k404.Cookey.Security;
+package com.k404.Cookey.security;
 
 import java.io.IOException;
 
@@ -21,11 +21,18 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    	// 헤더에서 토큰 받아오기
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
+        // 토큰이 유효하다면
         if (token != null && jwtTokenProvider.validateToken(token)) {
+        	System.out.println("도착 했니? 보낸 토큰 있지.");
+        	// 토큰으로부터 유저 정보를 받아
             Authentication authentication = jwtTokenProvider.getAuthentication(token);
+            // SecurityContext 에 객체 저장
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            System.out.println("doFilter 수행 다했음. ");
         }
+        // 다음 Filter 실행
         chain.doFilter(request, response);
     }
 }

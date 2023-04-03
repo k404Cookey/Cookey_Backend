@@ -1,7 +1,5 @@
 package com.k404.Cookey.config;
 
-import com.k404.Cookey.Security.JwtAuthenticationFilter;
-import com.k404.Cookey.Security.JwtTokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,6 +10,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.k404.Cookey.security.JwtAuthenticationFilter;
+import com.k404.Cookey.security.JwtTokenProvider;
 
 import lombok.RequiredArgsConstructor;
 
@@ -38,6 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .httpBasic().disable()
                 .csrf().disable()
+                // 세션 사용 안해요!
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
