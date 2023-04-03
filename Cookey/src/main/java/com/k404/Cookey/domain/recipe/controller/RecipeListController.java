@@ -44,12 +44,14 @@ public class RecipeListController {
 		if (queryType.equals("search")) {
 			return new ResultList<ResponseDto>(recipeListService.findAll(stepStart, stepEnd, time, start, end, order, keyword, limit, offset));
 		}
+		/*
 		if (queryType.equals("viewTop")) {
 			return new ResultList<ResponseDto>(monthlyViewService.rank(limit));
 		}
 		if (queryType.equals("labelTop")) {
 			return new ResultList<ResponseDto>(monthlyLabelService.rank(limit));
 		}
+		*/
 		if (queryType.equals("my")) {
 			User user = (User) ((Authentication) principal).getPrincipal();
 			return new ResultList<ResponseDto>(recipeListService.getUserRecipes(user, limit, offset));
