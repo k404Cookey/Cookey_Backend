@@ -12,4 +12,11 @@ public class RequestCommentDto {
     private Long pid;
     private Long recipeId;
     private Long userId;
+    
+
+public RequestCommentDto() {
+	
 }
+
+}
+
