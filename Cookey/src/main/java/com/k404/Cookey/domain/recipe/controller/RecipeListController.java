@@ -45,9 +45,9 @@ public class RecipeListController {
 			System.out.println("쿼리타입 serch가 실행 됬나요?");
 			return new ResultList<ResponseDto>(recipeListService.findAll(stepStart, stepEnd, time, start, end, order, keyword, limit, offset));
 		}
-//		if (queryType.equals("viewTop")) {
-//			return new ResultList<ResponseDto>(monthlyViewService.rank(limit));
-//		}
+		if (queryType.equals("viewTop")) {
+			return new ResultList<ResponseDto>(recipeListService.findAllOrderByRecipes(stepStart, stepEnd, time, start, end, keyword, limit, offset));
+		}
 //		if (queryType.equals("labelTop")) {
 //			return new ResultList<ResponseDto>(monthlyLabelService.rank(limit));
 //		}

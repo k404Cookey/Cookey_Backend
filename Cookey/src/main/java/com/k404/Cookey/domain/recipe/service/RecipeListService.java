@@ -23,6 +23,12 @@ public class RecipeListService {
 				.map(ResponseDto::new).collect(Collectors.toList());
 	}
 	
+	public List<ResponseDto> findAllOrderByRecipes(String stepStart, String stepEnd, String time, LocalDateTime start, LocalDateTime end,  String keyword, int limit, int offset) {		
+		System.out.println("recipeDslRepository안 findAll 실행후 ");
+		return recipeDslRepository.findAllOrderByRecipes(stepStart, stepEnd, time, start, end, keyword, limit, offset).stream()
+				.map(ResponseDto::new).collect(Collectors.toList());
+	}
+	
 	public List<ResponseDto> getUserRecipes(User user, int limit, int offset) {
 		return recipeDslRepository.getUserRecipes(user, limit, offset).stream()
 				.map(ResponseDto::new).collect(Collectors.toList());

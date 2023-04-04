@@ -40,7 +40,7 @@ public class CommentService {
         User user = userRepository.findById(commentDto.getUserId()).orElseThrow(()->new IllegalArgumentException("해당 아이디의 유저가 없습니다. id : " + commentDto.getUserId()));
 
         Comment parentComment = null;
-        if(commentDto.getPid() != null) parentComment = commentRepository.findById(commentDto.getPid()).orElseThrow(()->new IllegalArgumentException("해당 부모 아이디의 댓글이 없습니다. id : " + commentDto.getPid()));
+//        if(commentDto.getPid() != null) parentComment = commentRepository.findById(commentDto.getPid()).orElseThrow(()->new IllegalArgumentException("해당 부모 아이디의 댓글이 없습니다. id : " + commentDto.getPid()));
 
         Comment comment = Comment.builder()
                 .content(commentDto.getContent())

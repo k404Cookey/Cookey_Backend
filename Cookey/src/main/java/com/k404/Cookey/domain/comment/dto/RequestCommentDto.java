@@ -12,4 +12,9 @@ public class RequestCommentDto {
     private Long pid;
     private Long recipeId;
     private Long userId;
+    
+  //기본 생성자 추가
+    public RequestCommentDto() {
+    }
 }
+

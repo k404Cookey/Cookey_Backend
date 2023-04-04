@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/comment")
 public class CommentController {
     private final CommentService commentService;
 
@@ -46,7 +46,7 @@ public class CommentController {
 
     @PostMapping("")
     public Result<ResponseCommentDto> add(@RequestBody @Validated RequestCommentDto commentDto){
-
+    	System.out.println("코멘트가 달렸어요 그래서 commentDto에는 무엇이 들어있나요?" + commentDto );
         Long id = commentService.add(commentDto);
         Comment comment = commentService.get(id);
         return new Result<ResponseCommentDto>(new ResponseCommentDto(comment));
